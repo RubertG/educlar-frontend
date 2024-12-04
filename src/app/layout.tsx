@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { inter } from "./(core)/fonts"
+import { inter } from "./core/fonts"
 
 export const metadata: Metadata = {
   title: "EduCLAR - Gestor académico",
@@ -20,7 +20,7 @@ export default function RootLayout({
         </head>
       </head>
       <body
-        className={`${inter.variable} ${inter.variable} antialiased`}
+        className={`${inter.variable} ${inter.variable} antialiased bg-bg-100 text-text-100`}
       >
         {children}
       </body>
