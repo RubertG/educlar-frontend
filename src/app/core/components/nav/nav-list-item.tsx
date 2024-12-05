@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { NavigationItem } from '../../interfaces/navigation'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx' 
+import clsx from 'clsx'
 
 // Interfaz NavigationItem con la propiedad className de tipo string
 interface Props extends NavigationItem {
@@ -22,9 +22,9 @@ const NavListItem = ({
   const isActive = pathName === href
 
   return (
-    <li className={className}>
+    <li className={`w-full md:w-auto ${className}`}>
       <Link
-        className={clsx("capitalize w-full px-2 py-2 hover:text-primary-100 rounded-lg font-medium text-sm", {
+        className={clsx("capitalize block w-full text-center px-2 py-2 hover:text-primary-100 rounded-lg font-medium text-sm", {
           "text-primary-100": isActive,
           "": !isActive
         })}

@@ -1,8 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import { NavigationItem } from "../../interfaces/navigation"
 import { Button } from "../ui/button"
 import { NavBrand } from "./nav-brand"
 import { NavListContainer } from "./nav-list-container"
 import { NavListItem } from "./nav-list-item"
+import { ToggleMenu } from "./toggle-menu"
 
 // Lista de items de la navegación
 const NAV_ITEMS: NavigationItem[] = [
@@ -30,13 +34,21 @@ export function Nav() {
     - Implementar revicion de autenticación
     - Implementar rutas de navegación segun la autenticación
   */
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+    setOpen(!open)
+  }
 
   return (
     <nav className="bg-bg-50 shadow-nav">
-      <nav className="container mx-auto py-2 flex items-center justify-between">
-        <NavBrand />
+      <nav className="container py-2 flex flex-col items-center md:flex-row md:justify-between">
+        <div className="flex justify-between items-center w-full">
+          <NavBrand />
+          <ToggleMenu onClick={handleOpen} />
+        </div>
 
-        <NavListContainer>
+        <NavListContainer open={open}>
           {
             NAV_ITEMS.map((item) => (
               <NavListItem
@@ -46,7 +58,7 @@ export function Nav() {
               />
             ))
           }
-          <li className="ml-2">
+          <li className="mt-2 md:mt-0 md:ml-2">
             <Button
               variant="outline"
             >

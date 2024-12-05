@@ -1,9 +1,11 @@
 import React from 'react'
 import { PropsWithClassName } from '../../interfaces/props'
+import { clsx } from 'clsx'
 
 // Interfas Props con la propiedad children de tipo React.ReactNode y la propiedad className de tipo string
 interface Props extends PropsWithClassName {
   children: React.ReactNode
+  open: boolean
 }
 
 /*
@@ -12,10 +14,14 @@ interface Props extends PropsWithClassName {
 */
 const NavListContainer = ({
   className = "",
-  children
+  children,
+  open
 }: Props) => {
   return (
-    <ul className={`flex items-center gap-2.5 ${className}`}>
+    <ul className={clsx(`absolute bg-white py-3 top-10 flex flex-col w-full items-center gap-0 transition-all md:flex-row md:justify-end md:py-0 md:static md:gap-2.5 ${className}`, {
+      "opacity-100 translate-x-0": open,
+      "opacity-0 -translate-x-full md:opacity-100 md:translate-x-0": !open
+    })}>
       {children}
     </ul>
   )
