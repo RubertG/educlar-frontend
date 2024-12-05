@@ -15,7 +15,7 @@ const NAV_ITEMS: NavigationItem[] = [
     href: "/"
   },
   {
-    label: "Matricula",
+    label: "Matrícula",
     href: "/matricula"
   },
   {
