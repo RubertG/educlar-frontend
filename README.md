@@ -1,6 +1,6 @@
 # EduCLAR - Gestor académico 
 
-EduCLAR es un sistema de gestión académica.
+EduCLAR es un sistema de gestión académica hecho con Next.js para el Frontend y Express.js para el Backend.
 
 ## Funcionalidades
 
