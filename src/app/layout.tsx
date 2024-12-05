@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
 import { inter } from "./core/fonts"
+import { Nav } from "./core/components"
 
 export const metadata: Metadata = {
   title: "EduCLAR - Gestor académico",
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${inter.variable} antialiased bg-bg-100 text-text-100`}
       >
+        <Nav />
         {children}
       </body>
     </html>
