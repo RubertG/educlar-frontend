@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "nav": "0 4px 10px 0 rgba(0,0,0,0.06)"
+      },
       colors: {
         "primary-100": "#2563eb",
         "primary-200": "#59a5f5",
