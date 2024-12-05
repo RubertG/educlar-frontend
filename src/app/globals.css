@@ -4,7 +4,7 @@
 
 .container { 
   @apply mx-auto px-3;
-  width: auto;
+  width: 100%;
   max-width: 1500px;
 }
 

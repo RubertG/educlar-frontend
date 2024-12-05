@@ -23,8 +23,12 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${inter.variable} antialiased bg-bg-100 text-text-100`}
       >
-        <Nav />
-        {children}
+        <div className="min-h-screen grid grid-rows-[auto_1fr]">
+          <Nav />
+          <main className="container mt-6">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   )
