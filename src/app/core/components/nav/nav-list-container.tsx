@@ -2,7 +2,7 @@ import React from 'react'
 import { PropsWithClassName } from '../../interfaces/props'
 import { clsx } from 'clsx'
 
-// Interfas Props con la propiedad children de tipo React.ReactNode y la propiedad className de tipo string
+// Interfas Props con la propiedad children de tipo React.ReactNode, la propiedad className de tipo string y la propiedad open de tipo boolean.
 interface Props extends PropsWithClassName {
   children: React.ReactNode
   open: boolean
