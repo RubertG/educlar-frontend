@@ -7,6 +7,11 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, Input } from "@/app/core/components"
 import { FormField, Form, FormItem, FormLabel, FormControl, FormMessage } from "@/app/core/components/ui/form"
 
+/*
+  Formulario de inicio de sesión
+  Contiene las funciones para validar los campos del formulario y enviar los datos
+  Contiene los campos de email y contraseña para iniciar sesión
+*/
 const LoginForm = () => {
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
