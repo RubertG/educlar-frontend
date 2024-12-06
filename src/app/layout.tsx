@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { inter } from "./core/fonts"
-import { Nav } from "./core/components"
+import { inter } from "@/core/fonts"
+import { Nav } from "@/core/components"
 
 export const metadata: Metadata = {
   title: "EduCLAR - Gestor académico",
@@ -23,7 +23,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen grid grid-rows-[auto_1fr]">
           <Nav />
-          <main className="container mt-6">
+          <main className="container">
             {children}
           </main>
         </div>

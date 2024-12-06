@@ -2,11 +2,7 @@
 
 import { useState } from "react"
 import { NavigationItem } from "../../interfaces/navigation"
-import { Button } from "../ui/button"
-import { NavBrand } from "./nav-brand"
-import { NavListContainer } from "./nav-list-container"
-import { NavListItem } from "./nav-list-item"
-import { ToggleMenu } from "./toggle-menu"
+import { Button,NavBrand, NavListContainer, NavListItem, ToggleMenu } from "@/core/components"
 import { useRouter } from "next/navigation"
 
 // Lista de items de la navegación

@@ -1,11 +1,10 @@
 "use client"
 
 import { z } from "zod"
-import { loginSchema } from "../schemas"
+import { loginSchema } from "@/auth/schemas"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Input } from "@/app/core/components"
-import { FormField, Form, FormItem, FormLabel, FormControl, FormMessage } from "@/app/core/components/ui/form"
+import { FormField, Form, FormItem, FormLabel, FormControl, FormMessage, Button, Input } from "@/core/components"
 import { useRouter } from "next/navigation"
 
 /*
@@ -29,7 +28,7 @@ const LoginForm = () => {
   }
 
   return (
-    <article className="max-w-96 w-full p-5 bg-bg-50 rounded-lg border border-bg-300 shadow-custom-card -mt-10">
+    <article className="max-w-96 w-full p-5 bg-bg-50 rounded-lg border border-bg-300 shadow-custom-card">
       <h2 className="font-semibold text-3xl text-center">
         Iniciar sesión
       </h2>
@@ -64,7 +63,7 @@ const LoginForm = () => {
           />
 
           <Button
-          className="block w-full mt-5"
+            className="block w-full mt-5"
             type="submit"
           >
             Ingresar
