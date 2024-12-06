@@ -1,8 +1,10 @@
+import { LoginForm } from "../components"
+
 function LoginPage() {
   return (
-    <div>
-      Esta es la pagina de login de la app
-    </div>
+    <section className="flex items-center justify-center h-full">
+      <LoginForm />
+    </section>
   )
 }
 
