@@ -16,12 +16,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <head>
-          <link rel="icon" href="/logo.webp" type="image/webp" />
-        </head>
+        <link rel="icon" href="/logo.webp" type="image/webp" />
       </head>
       <body
-        className={`${inter.variable} ${inter.variable} antialiased bg-bg-100 text-text-100`}
+        className={`${inter.className} antialiased bg-bg-100 text-text-100`}
       >
         <div className="min-h-screen grid grid-rows-[auto_1fr]">
           <Nav />
