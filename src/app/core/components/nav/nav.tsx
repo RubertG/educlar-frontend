@@ -7,6 +7,7 @@ import { NavBrand } from "./nav-brand"
 import { NavListContainer } from "./nav-list-container"
 import { NavListItem } from "./nav-list-item"
 import { ToggleMenu } from "./toggle-menu"
+import { useRouter } from "next/navigation"
 
 // Lista de items de la navegación
 const NAV_ITEMS: NavigationItem[] = [
@@ -35,9 +36,14 @@ export function Nav() {
     - Implementar rutas de navegación segun la autenticación
   */
   const [open, setOpen] = useState(false)
+  const router = useRouter()
 
   const handleOpen = () => {
     setOpen(!open)
+  }
+
+  const logOut = () => {
+    router.push("/ingresar")
   }
 
   return (
@@ -61,6 +67,7 @@ export function Nav() {
           <li className="mt-2 md:mt-0 md:ml-2">
             <Button
               variant="outline"
+              onClick={logOut}
             >
               Cerrar sesión
             </Button>
