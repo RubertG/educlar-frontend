@@ -6,7 +6,8 @@ function ProfileInfoLayout({
 }: PropsWithChildren) {
   return (
     <>
-      <ProfileInfo />
+      <ProfileInfo className="mt-7"/>
+      <hr className="border-t border-bg-300 mt-8 mb-4" />
       {children}
     </>
   )
