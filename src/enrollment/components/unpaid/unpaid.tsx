@@ -44,8 +44,12 @@ const Unpaid = ({
   const items = PRICE_SUMMARY.slice(0, PRICE_SUMMARY.length - 2)
   const totals = PRICE_SUMMARY.slice(PRICE_SUMMARY.length - 2, PRICE_SUMMARY.length)
 
+  /*
+    TODO: Implementar lógica para obtener los datos de la matrícula
+  */
+
   return (
-    <UnpaidContainer className={className}>
+    <UnpaidContainer className={`${className}`}>
       <UnpaidDetails />
 
       <PriceSummary>

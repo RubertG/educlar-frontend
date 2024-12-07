@@ -9,7 +9,7 @@ const UnpaidContainer = ({
   children, className
 }: Props) => {
   return (
-    <section className={`grid grid-cols-1 lg:grid-cols-[55%_auto] gap-6 gap-y-4 items-start ${className}`}>
+    <section className={`grid grid-cols-1 gap-6 gap-y-4 items-start lg:grid lg:grid-cols-[55%_auto] ${className}`}>
       {children}
     </section>
   )

@@ -14,7 +14,7 @@ const SummaryItem = ({
   label, value, className = '', valueClassName = '', labelClassName = ''
 }: Props) => {
   return (
-    <li className={`flex justify-between items-center ${className}`}>
+    <li className={`flex justify-between items-center gap-1 ${className}`}>
       <p className={`w-full truncate text-sm ${labelClassName}`}>
         {label}
       </p>
