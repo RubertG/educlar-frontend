@@ -8,7 +8,6 @@
   max-width: 1500px;
 }
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
