@@ -37,7 +37,7 @@ const ProfileInfo = ({
           </h2>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-6 gap-y-1 items-center justify-center xl:justify-start">
+        <div className="mt-4 flex flex-wrap gap-6 gap-y-1 items-center justify-center xl:justify-start xl:mt-6">
           <InfoItem Icon={FileBadge} label="Ingenieria de sistemas" />
 
           <InfoItem Icon={Mail} label="cristiannavarro@unipamplona.edu.co" />
@@ -45,7 +45,7 @@ const ProfileInfo = ({
           <InfoItem Icon={MapPin} label="Pamplona, Norte de Santander" />
         </div>
 
-        <StatsContainer>
+        <StatsContainer className="mt-4">
           {
             STATS.map(({ label, value }) => (
               <StatItem label={label} value={value} key={label} />
@@ -54,7 +54,10 @@ const ProfileInfo = ({
         </StatsContainer>
       </InfoContainer>
 
-      <ProfileRadialChart progress={76.82} />
+      <ProfileRadialChart
+        className="mt-4 xl:mt-0"
+        progress={76.82}
+      />
     </header>
   )
 }

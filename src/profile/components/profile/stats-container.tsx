@@ -11,7 +11,7 @@ const StatsContainer = ({
   children, className
 }: Props) => {
   return (
-    <ul className={`flex flex-wrap gap-3 mt-4 items-start justify-center xl:justify-start ${className}`}>
+    <ul className={`flex flex-wrap gap-3 items-start justify-center xl:justify-start ${className}`}>
       {children}
     </ul>
   )
