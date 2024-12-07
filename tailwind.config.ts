@@ -10,7 +10,7 @@ export default {
     extend: {
       boxShadow: {
         'nav': '0 4px 10px 0 rgba(0,0,0,0.06)',
-        'custom-card': '0 4px 15px 0 rgba(0,0,0,0.08)'
+        'custom-card': '0 4px 15px 0 rgba(0,0,0,0.1)'
       },
       colors: {
         'primary-100': '#2563eb',
