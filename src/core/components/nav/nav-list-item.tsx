@@ -9,6 +9,7 @@ import clsx from 'clsx'
 // Interfaz NavigationItem con la propiedad className de tipo string
 interface Props extends NavigationItem {
   className?: string
+  onClick?: () => void
 }
 
 /*
@@ -16,7 +17,7 @@ interface Props extends NavigationItem {
   Implementa un elemento de lista de navegación y edita su clase si está activo.
 */
 const NavListItem = ({
-  label, href, className
+  label, href, className, onClick
 }: Props) => {
   const pathName = usePathname()
   const isActive = pathName === href
@@ -29,6 +30,7 @@ const NavListItem = ({
           "": !isActive
         })}
         href={href}
+        onClick={onClick}
       >
         {label}
       </Link>

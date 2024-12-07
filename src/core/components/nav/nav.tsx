@@ -57,6 +57,7 @@ export function Nav() {
                 key={item.label}
                 label={item.label}
                 href={item.href}
+                onClick={handleOpen}
               />
             ))
           }
