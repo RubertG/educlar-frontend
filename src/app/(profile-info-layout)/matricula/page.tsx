@@ -1,8 +1,10 @@
+import { Unpaid } from "@/enrollment/components"
+
 function EnrollementPage() {
   return (
-    <div>
-      Página de matricula
-    </div>
+    <section className="mb-5">
+      <Unpaid />
+    </section>
   )
 }
 
