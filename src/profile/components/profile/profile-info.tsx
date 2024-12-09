@@ -21,8 +21,9 @@ const ProfileInfo = ({
         className="w-full max-w-44 aspect-[3/3.5] rounded-lg object-cover object-center"
         src="/profile-img.jpg"
         width={200}
-        height={200}
+        height={300}
         alt="Profile picture"
+        priority
       />
 
       <InfoContainer>

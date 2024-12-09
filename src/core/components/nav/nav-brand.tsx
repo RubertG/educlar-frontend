@@ -17,6 +17,7 @@ const NavBrand = ({
       <Image
         className="w-32 md:w-44"
         src="/logo-horizontal.webp"
+        priority
         alt="logo"
         width={200}
         height={53}
