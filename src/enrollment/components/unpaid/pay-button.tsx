@@ -29,7 +29,7 @@ function PayButton({
         <DialogHeader className="!space-y-3">
           <DialogTitle>¿Estás seguro de pagar la matricula?</DialogTitle>
           <DialogDescription className="!text-text-200">
-            Esta acción de pago no está disponible en este prototipo ya que está enfocado a la gestion de matriculas y materias, no la gestión de pagos.
+            Esta acción de pago no está disponible en este prototipo, ya que está enfocado a la gestion de matriculas y materias, no la gestión de pagos.
           </DialogDescription>
         </DialogHeader>
 
