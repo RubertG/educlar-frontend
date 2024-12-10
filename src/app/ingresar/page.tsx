@@ -1,10 +1,12 @@
-import { LoginForm } from "@/auth/components"
+import { LoginForm, ProtectedRoute } from "@/auth/components"
 
 function LoginPage() {
   return (
-    <section className="flex items-center justify-center h-full">
-      <LoginForm />
-    </section>
+    <ProtectedRoute>
+      <section className="flex items-center justify-center h-full">
+        <LoginForm />
+      </section>
+    </ProtectedRoute>
   )
 }
 
