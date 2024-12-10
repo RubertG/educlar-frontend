@@ -21,7 +21,6 @@ const ProtectedRoute = ({
     const fetchUser = async () => {
       setLoading(true)
       const { token, user } = await verifyCredentials()
-      console.log("Perfil:", {token, user})
       setUser(user)
       setToken(token)
       setLoading(false)
