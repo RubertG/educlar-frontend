@@ -10,6 +10,7 @@ interface LoginResponse {
 
 export const loginClient = async (email: string, password: string): Promise<LoginResponse> => {
   try {
+    console.log(password)
     // TODO: Hacer peticion a la API para verificar las credenciales
     await new Promise((resolve) => setTimeout(resolve, 1500))
     
