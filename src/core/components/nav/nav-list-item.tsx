@@ -30,6 +30,7 @@ const NavListItem = ({
           "": !isActive
         })}
         href={href}
+        scroll={false}
         onClick={onClick}
       >
         {label}
