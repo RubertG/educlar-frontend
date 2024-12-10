@@ -4,6 +4,7 @@ import { verifyCredentials } from "@/auth/services"
 import { useUserStore } from "@/core/stores"
 import { PropsWithChildren, useEffect } from "react"
 import { Loading } from "./loading"
+import { useRouter } from "next/navigation"
 
 const ProtectedRoute = ({
   children
@@ -14,6 +15,7 @@ const ProtectedRoute = ({
   const setToken = useUserStore((state) => state.setToken)
   const loading = useUserStore((state) => state.loading)
   const setLoading = useUserStore((state) => state.setLoading)
+  const router = useRouter()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -26,6 +28,12 @@ const ProtectedRoute = ({
 
     fetchUser()
   }, [setUser, setToken, setLoading])
+
+  useEffect(() => {
+    if (!user || !token && !loading) {
+      router.push("/ingresar")
+    } 
+  }, [loading, router, token, user])
 
   if (loading) {
     return (
