@@ -2,22 +2,34 @@
 
 import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/core/components"
 import { PropsWithClassName } from "@/core/interfaces/props"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 function PayButton({
   className = ''
 }: PropsWithClassName) {
   const [loading, setLoading] = useState(false)
+  const [open, setOpen] = useState(false)
+  const router = useRouter()
+
+  const handleOpen = () => {
+    setOpen(!open)
+  }
 
   const onClick = async () => {
     setLoading(true)
     // Simulate payment processing
     await new Promise(resolve => setTimeout(resolve, 2000))
     setLoading(false)
+    setOpen(false)
+    router.refresh()
   }
 
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={handleOpen}
+    >
       <DialogTrigger asChild>
         <Button
           className={`${className}`}
