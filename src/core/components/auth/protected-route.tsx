@@ -21,6 +21,7 @@ const ProtectedRoute = ({
     const fetchUser = async () => {
       setLoading(true)
       const { token, user } = await verifyCredentials()
+      console.log("Perfil:", {token, user})
       setUser(user)
       setToken(token)
       setLoading(false)
@@ -30,7 +31,9 @@ const ProtectedRoute = ({
   }, [setUser, setToken, setLoading])
 
   useEffect(() => {
-    if (!user || !token && !loading) {
+    if (loading) return 
+
+    if (!user || !token) {
       router.push("/ingresar")
     } 
   }, [loading, router, token, user])

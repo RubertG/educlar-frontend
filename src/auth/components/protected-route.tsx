@@ -30,7 +30,9 @@ const ProtectedRoute = ({
   }, [setUser, setToken, setLoading])
 
   useEffect(() => {
-    if (user || token && !loading) {
+    if (loading) return
+
+    if (user || token) {
       router.push("/")
     }
   }, [user, router, loading, token])
