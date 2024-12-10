@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { NavigationItem } from "../../interfaces/navigation"
 import { Button, NavBrand, NavListContainer, NavListItem, ToggleMenu } from "@/core/components"
 import { useRouter } from "next/navigation"
@@ -38,10 +38,6 @@ export function Nav() {
   const token = useUserStore((state) => state.token)
   const setToken = useUserStore((state) => state.setToken)
   const setUser = useUserStore((state) => state.setUser)
-
-  useEffect(() => {
-    console.log(token)
-  }, [token])
 
   const handleOpen = () => {
     setOpen(!open)

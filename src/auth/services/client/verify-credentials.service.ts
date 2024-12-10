@@ -12,7 +12,7 @@ export const verifyCredentials = async (): Promise<LoginResponse> => {
     const user = getCookie(USER_PATH)
     const token = getCookie(TOKEN_PATH)
 
-    console.log(user, token)
+    // console.log(user, token)
     // TODO: Verificar si el token es válido con el backend
 
     if (!user || !token) {
