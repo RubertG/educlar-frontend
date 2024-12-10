@@ -96,7 +96,7 @@ function SubjectsPage() {
   const classes = Object.keys(API_RESPONSE) as (keyof APIResponse)[]
 
   return (
-    <ScheduleContainer className="mb-5">
+    <ScheduleContainer className="mb-10">
       {
         classes.map((day) => {
           return (
