@@ -4,6 +4,7 @@ import { useUserStore } from "@/core/stores"
 import { useRouter } from "next/navigation"
 import { PropsWithChildren, useEffect } from "react"
 import { verifyCredentials } from "../services"
+import { Loading } from "@/core/components"
 
 const ProtectedRoute = ({
   children
@@ -13,6 +14,7 @@ const ProtectedRoute = ({
   const loading = useUserStore((state) => state.loading)
   const setLoading = useUserStore((state) => state.setLoading)
   const setToken = useUserStore((state) => state.setToken)
+  const token = useUserStore((state) => state.token)
   const router = useRouter()
 
   useEffect(() => {
@@ -35,14 +37,14 @@ const ProtectedRoute = ({
 
   if (loading) {
     return (
-      <div>
-        Cargando...
-      </div>
+      <Loading />
     )
   }
 
-  if (user) {
-    return null
+  if (user && token) {
+    return (
+      <Loading />
+    )
   }
 
   return (
