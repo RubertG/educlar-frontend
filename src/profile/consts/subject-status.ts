@@ -1,5 +1,5 @@
 export const SUBJECT_STATUS = {
-  approved: "aprovada",
+  approved: "aprobada",
   current: "cursando",
   pending: "pendiente"
 } as const

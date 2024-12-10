@@ -7,45 +7,45 @@ const careerMap: CareerMap = {
     {
       id: '1',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }, {
       id: '1324',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }, {
       id: '1234234',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }, {
       id: '12342342',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }, {
       id: '1234234234',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }, {
       id: '1234234234',
       name: 'Habilidades comunicativas 1',
-      status: 'aprovada',
+      status: 'aprobada',
       semester: 1
     }
   ],
   2: [{
     id: '2',
     name: 'Habilidades comunicativas 2',
-    status: 'aprovada',
+    status: 'aprobada',
     semester: 2
   }],
   3: [{
     id: '3',
     name: 'Habilidades comunicativas 3',
-    status: 'aprovada',
+    status: 'aprobada',
     semester: 3
   }],
   4: [{
@@ -63,7 +63,7 @@ const careerMap: CareerMap = {
   6: [{
     id: '6',
     name: 'Habilidades comunicativas 6',
-    status: 'aprovada',
+    status: 'aprobada',
     semester: 6
   }],
   7: [{
@@ -81,7 +81,7 @@ const careerMap: CareerMap = {
   9: [{
     id: '9',
     name: 'Habilidades comunicativas 9',
-    status: 'aprovada',
+    status: 'aprobada',
     semester: 9
   }],
   10: [{
