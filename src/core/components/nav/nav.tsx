@@ -1,9 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { NavigationItem } from "../../interfaces/navigation"
-import { Button,NavBrand, NavListContainer, NavListItem, ToggleMenu } from "@/core/components"
+import { Button, NavBrand, NavListContainer, NavListItem, ToggleMenu } from "@/core/components"
 import { useRouter } from "next/navigation"
+import { logoutClient } from "@/auth/services"
+import { useUserStore } from "@/core/stores"
 
 // Lista de items de la navegación
 const NAV_ITEMS: NavigationItem[] = [
@@ -33,12 +35,28 @@ export function Nav() {
   */
   const [open, setOpen] = useState(false)
   const router = useRouter()
+  const token = useUserStore((state) => state.token)
+  const setToken = useUserStore((state) => state.setToken)
+  const setUser = useUserStore((state) => state.setUser)
+
+  useEffect(() => {
+    console.log(token)
+  }, [token])
 
   const handleOpen = () => {
     setOpen(!open)
   }
 
   const logOut = () => {
+    handleOpen()
+    logoutClient()
+    setUser(null)
+    setToken(null)
+    router.push("/ingresar")
+  }
+
+  const logIn = () => {
+    handleOpen()
     router.push("/ingresar")
   }
 
@@ -52,22 +70,32 @@ export function Nav() {
 
         <NavListContainer open={open}>
           {
-            NAV_ITEMS.map((item) => (
-              <NavListItem
-                key={item.label}
-                label={item.label}
-                href={item.href}
-                onClick={handleOpen}
-              />
-            ))
+            token && (
+              NAV_ITEMS.map((item) => (
+                <NavListItem
+                  key={item.label}
+                  label={item.label}
+                  href={item.href}
+                  onClick={handleOpen}
+                />
+              ))
+            )
           }
           <li className="mt-2 md:mt-0 md:ml-2">
-            <Button
-              variant="outline"
-              onClick={logOut}
-            >
-              Cerrar sesión
-            </Button>
+            {
+              token ? (
+                <Button
+                  variant="outline"
+                  onClick={logOut}
+                >
+                  Cerrar sesión
+                </Button>
+              ) : (
+                <Button onClick={logIn}>
+                  Iniciar sesión
+                </Button>
+              )
+            }
           </li>
         </NavListContainer>
       </nav>

@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FormField, Form, FormItem, FormLabel, FormControl, FormMessage, Button, Input } from "@/core/components"
 import { useRouter } from "next/navigation"
+import { useUserStore } from "@/core/stores"
+import { loginClient } from "@/auth/services"
+import { useState } from "react"
 
 /*
   Formulario de inicio de sesión
@@ -13,6 +16,8 @@ import { useRouter } from "next/navigation"
   Contiene los campos de email y contraseña para iniciar sesión
 */
 const LoginForm = () => {
+  const [loading, setLoading] = useState(false)
+
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -20,11 +25,31 @@ const LoginForm = () => {
       password: ""
     }
   })
+  
   const router = useRouter()
+  const setError = useUserStore((state) => state.setError)
+  const setUser = useUserStore((state) => state.setUser)
+  const errorMessage = useUserStore((state) => state.error)
+  const setToken = useUserStore((state) => state.setToken)
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    console.log(values)
-    router.push("/")
+  const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+    setError(null)
+    setLoading(true)
+
+    const { user, token, error } = await loginClient(values.email, values.password)
+
+    if (user && token) {
+      setUser(user)
+      setToken(token)
+    }
+
+    setLoading(false)
+
+    if (!error || !user || !token) {
+      router.push("/")
+    } else {
+      setError(error)
+    }
   }
 
   return (
@@ -62,11 +87,15 @@ const LoginForm = () => {
             )}
           />
 
+          <FormMessage className="mt-2">
+            {errorMessage}
+          </FormMessage>
+
           <Button
             className="block w-full mt-5"
             type="submit"
           >
-            Ingresar
+            {loading ? "Cargando..." : "Ingresar"}
           </Button>
         </form>
       </Form>
