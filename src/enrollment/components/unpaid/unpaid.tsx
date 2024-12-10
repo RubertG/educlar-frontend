@@ -5,35 +5,35 @@ import { UnpaidDetails } from "./unpaid-details"
 
 const PRICE_SUMMARY = [
   {
-    title: 'Derechos de matricula ingeniería en sistemas',
+    label: 'Derechos de matricula ingeniería en sistemas',
     value: 895700
   },
   {
-    title: 'Beneficiario de política de gratuidad',
+    label: 'Beneficiario de política de gratuidad',
     value: -895700
   },
   {
-    title: 'Derechos complementarios ingeniería en sistemas',
+    label: 'Derechos complementarios ingeniería en sistemas',
     value: 104000
   },
   {
-    title: 'Seguro estudiantil',
+    label: 'Seguro estudiantil',
     value: 17000
   },
   {
-    title: 'Fondo de capital semilla',
+    label: 'Fondo de capital semilla',
     value: 33800
   },
   {
-    title: 'Timbre pro cultural',
+    label: 'Timbre pro cultural',
     value: 26000
   },
   {
-    title: 'Subtotal',
+    label: 'Subtotal',
     value: 1171500
   },
   {
-    title: 'Total a pagar',
+    label: 'Total a pagar',
     value: 260800
   }
 ]
@@ -54,21 +54,21 @@ const Unpaid = ({
 
       <PriceSummary>
         {
-          items.map(({ title, value }) => (
+          items.map(({ label: label, value }) => (
             <SummaryItem
               className="first:pt-0 pt-1"
-              key={title}
-              label={title}
+              key={label}
+              label={label}
               value={value}
             />
           ))
         }
         <Hr className="mt-2.5 mb-2" />
         {
-          totals.map(({ title, value }) => (
+          totals.map(({ label, value }) => (
             <SummaryItem
-              key={title}
-              label={title}
+              key={label}
+              label={label}
               value={value}
               labelClassName="font-bold !text-base"
             />
