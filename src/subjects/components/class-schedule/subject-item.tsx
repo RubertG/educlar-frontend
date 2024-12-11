@@ -10,6 +10,17 @@ interface Props {
 const SubjectItem = ({
   subject, classname
 }: Props) => {
+  const hourStart = subject.hourStart.toLocaleTimeString('es-CO', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: false
+  })
+  const hourEnd = subject.hourEnd.toLocaleTimeString('es-CO', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: false
+  })
+
   return (
     <li className={`px-3 py-2 flex justify-between items-center gap-1 ${classname}`}>
       <div className="overflow-hidden">
@@ -22,8 +33,8 @@ const SubjectItem = ({
       </div>
 
       <div className="text-nowrap text-sm text-text-200 text-end">
-        <p>{subject.hourStart} - {subject.hourEnd}</p>
-        <p>{subject.room}</p>
+        <p>{hourStart} - {hourEnd}</p>
+        <p>{subject.room} - Grupo {subject.group.name}</p>
       </div>
     </li>
   )

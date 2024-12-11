@@ -6,92 +6,147 @@ const API_RESPONSE: APIResponse = {
   monday: [
     {
       name: 'Materia 1',
-      hourStart: '08:00',
-      hourEnd: '09:30',
+      hourStart: new Date(2024, 0, 1, 8, 0),
+      hourEnd: new Date(2024, 0, 1, 9, 59),
+      group: {
+        id: '1',
+        name: 'A'
+      },
       room: 'Room 101'
     },
     {
       name: 'Materia 2',
-      hourStart: '10:00',
-      hourEnd: '11:30',
+      hourStart: new Date(2024, 0, 1, 10, 0),
+      hourEnd: new Date(2024, 0, 1, 11, 59),
+      group: {
+        id: '1',
+        name: 'A'
+      },
       teacher: 'Profesor 2',
       room: 'Room 102'
     }
   ],
   tuesday: [{
     name: 'Materia 3',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 8, 0),
+    hourEnd: new Date(2024, 0, 1, 9, 59),
+    group: {
+      id: '1',
+      name: 'B'
+    },
     teacher: 'Profesor 3',
     room: 'Room 103'
   }, {
     name: 'Materia 4',
-    hourStart: '10:00',
-    hourEnd: '11:30',
-    teacher: 'Profesor 4',
-    room: 'Room 104'
+    hourStart: new Date(2024, 0, 1, 10, 0),
+    hourEnd: new Date(2024, 0, 1, 11, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
+    teacher: 'Mauricio Alberto Contreras Maldonado',
+    room: 'FJ 104'
   }],
   wednesday: [{
     name: 'Materia 5',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 8, 0),
+    hourEnd: new Date(2024, 0, 1, 9, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 5',
     room: 'Room 105'
   }, {
     name: 'Materia 6',
-    hourStart: '10:00',
-    hourEnd: '11:30',
+    hourStart: new Date(2024, 0, 1, 10, 0),
+    hourEnd: new Date(2024, 0, 1, 11, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 6',
     room: 'Room 106'
   }],
   thursday: [{
     name: 'Materia 7',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 8, 0),
+    hourEnd: new Date(2024, 0, 1, 9, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 7',
     room: 'Room 107'
   }, {
     name: 'Materia 8',
-    hourStart: '10:00',
-    hourEnd: '11:30',
+    hourStart: new Date(2024, 0, 1, 10, 0),
+    hourEnd: new Date(2024, 0, 1, 11, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 8',
     room: 'Room 108'
   }],
   friday: [{
     name: 'Materia 9',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 8, 0),
+    hourEnd: new Date(2024, 0, 1, 9, 59),
     teacher: 'Profesor 9',
+    group: {
+      id: '1',
+      name: 'A'
+    },
     room: 'Room 109'
   }, {
     name: 'Materia 10',
-    hourStart: '10:00',
-    hourEnd: '11:30',
+    hourStart: new Date(2024, 0, 1, 10, 0),
+    hourEnd: new Date(2024, 0, 1, 11, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 10',
     room: 'Room 110'
   }],
   saturday: [{
     name: 'Materia 11',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 8, 0),
+    hourEnd: new Date(2024, 0, 1, 9, 59),
     teacher: 'Profesor 11',
+    group: {
+      id: '1',
+      name: 'A'
+    },
     room: 'Room 111'
   }, {
     name: 'Materia 12',
-    hourStart: '10:00',
-    hourEnd: '11:30',
+    hourStart: new Date(2024, 0, 1, 10, 0),
+    hourEnd: new Date(2024, 0, 1, 11, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 12',
     room: 'Room 112'
   }, {
     name: 'Materia 11',
-    hourStart: '08:00',
-    hourEnd: '09:30',
+    hourStart: new Date(2024, 0, 1, 17, 0),
+    hourEnd: new Date(2024, 0, 1, 19, 59),
+    group: {
+      id: '1',
+      name: 'A'
+    },
     teacher: 'Profesor 11',
     room: 'Room 113'
   }
   ]
 }
 
+/*
+  Página de las materias
+*/
 function SubjectsPage() {
   const classes = Object.keys(API_RESPONSE) as (keyof APIResponse)[]
 
