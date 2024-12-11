@@ -1,6 +1,8 @@
-export type UserRole = "Estudiante" | "Profesor" | "Administrador"
+import { USER_ROLES } from "@/auth/consts/user-roles"
 
-export interface User { 
+export type UserRole = typeof USER_ROLES[keyof typeof USER_ROLES]
+
+export interface User {
   id: string
   name: string
   email: string
