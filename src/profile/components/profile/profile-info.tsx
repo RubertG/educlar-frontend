@@ -2,19 +2,31 @@ import { FileBadge, IdCard, Mail, MapPin } from "lucide-react"
 import Image from "next/image"
 import { ProfileRadialChart, InfoContainer, InfoItem, StatItem, StatsContainer } from "@/profile/components"
 import { PropsWithClassName } from "@/core/interfaces/props"
+import { ProfileAPIResponse } from "@/profile/interfaces/profile-api-response"
+import { USER_PATH } from "@/auth/consts/cookies"
+import { User } from "@/core/interfaces/user"
+import { cookies } from "next/headers"
 
-const STATS = [
-  { label: "Periodo matriculado", value: "10" },
-  { label: "Ubicación semestral", value: "20" },
-  { label: "Promedio acumulado", value: "30" },
-  { label: "Total de creditos", value: "20" },
-  { label: "Créditos aprovados", value: "20" },
-  { label: "Porcentaje de avance", value: "100%" }
-]
+const getData = async () => {
+  const user = JSON.parse(cookies().get(USER_PATH)?.value || "") as User
 
-const ProfileInfo = ({
+  if (!user) return null
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/infoPerfil/${user.id}`)
+  const data = await response.json()
+
+  return data as ProfileAPIResponse
+}
+
+const ProfileInfo = async ({
   className = ""
 }: PropsWithClassName) => {
+  const data = await getData()
+
+  if (!data) return null
+
+  const { stats, user } = data
+
   return (
     <header className={`flex flex-col items-center xl:flex-row xl:gap-7 ${className}`}>
       <Image
@@ -30,34 +42,33 @@ const ProfileInfo = ({
         <div className="xl:flex xl:gap-4 xl:items-center  xl:flex-wrap">
           <p className="text-lg font-semibold flex items-center gap-2 justify-center xl:justify-start">
             <IdCard className="w-6 stroke-text-100" />
-            <span className="">1092344838</span>
+            <span className="">{user.id}</span>
           </p>
 
           <h2 className="text-xl font-semibold">
-            Cristian David Navarro Vasquez
+            {user.name}
           </h2>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-6 gap-y-1 items-center justify-center xl:justify-start xl:mt-6">
-          <InfoItem Icon={FileBadge} label="Ingenieria de sistemas" />
-
-          <InfoItem Icon={Mail} label="cristiannavarro@unipamplona.edu.co" />
-
-          <InfoItem Icon={MapPin} label="Pamplona, Norte de Santander" />
+          <InfoItem Icon={FileBadge} label={user.carrer} />
+          <InfoItem Icon={Mail} label={user.email} />
+          <InfoItem Icon={MapPin} label={user.location} />
         </div>
 
         <StatsContainer className="mt-4">
-          {
-            STATS.map(({ label, value }) => (
-              <StatItem label={label} value={value} key={label} />
-            ))
-          }
+          <StatItem label="Periodo acumulado" value={stats.period} />
+          <StatItem label="Ubicación semestral" value={stats.semester} />
+          <StatItem label="Promedio acumulado" value={stats.average} />
+          <StatItem label="Total de creditos" value={stats.totalCredits} />
+          <StatItem label="Créditos aprovados" value={stats.approvedCredits} />
+          <StatItem label="Porcentaje de avance" value={stats.progress} />
         </StatsContainer>
       </InfoContainer>
 
       <ProfileRadialChart
         className="mt-4 xl:mt-0"
-        progress={76.82}
+        progress={stats.progress}
       />
     </header>
   )
