@@ -18,6 +18,7 @@ export interface Subject {
   semester: number
   credits: number
   isObligatory: boolean
+  isEnrolled?: boolean
   groups: Group[]
 }
 
@@ -28,6 +29,7 @@ export const subjects: Subject[] = [
     semester: 1,
     credits: 5,
     isObligatory: true,
+    isEnrolled: true,
     groups: [
       {
         id: "1",
@@ -39,7 +41,8 @@ export const subjects: Subject[] = [
             hourStart: new Date(2024, 0, 1, 8, 30),
             hourEnd: new Date(2024, 0, 1, 9, 59)
           }
-        ]
+        ],
+        isSelected: true
       },
       {
         id: "2",
