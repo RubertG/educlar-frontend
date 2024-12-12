@@ -79,7 +79,7 @@ const LoginForm = () => {
               <FormItem className="mt-2">
                 <FormLabel>Contraseña</FormLabel>
                 <FormControl>
-                  <Input placeholder="*********" {...field} />
+                  <Input placeholder="*********" type="password" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
