@@ -1,52 +1,30 @@
+"use client" 
+
 import { Hr } from "@/core/components"
 import { PropsWithClassName } from "@/core/interfaces/props"
 import { PriceSummary, SummaryItem, UnpaidContainer } from "@/enrollment/components"
 import { UnpaidDetails } from "./unpaid-details"
+import { useEffect, useState } from "react"
+import { useUserStore } from "@/core/stores"
 
-const PRICE_SUMMARY = [
-  {
-    label: 'Derechos de matricula ingeniería en sistemas',
-    value: 895700
-  },
-  {
-    label: 'Beneficiario de política de gratuidad',
-    value: -895700
-  },
-  {
-    label: 'Derechos complementarios ingeniería en sistemas',
-    value: 104000
-  },
-  {
-    label: 'Seguro estudiantil',
-    value: 17000
-  },
-  {
-    label: 'Fondo de capital semilla',
-    value: 33800
-  },
-  {
-    label: 'Timbre pro cultural',
-    value: 26000
-  },
-  {
-    label: 'Subtotal',
-    value: 1171500
-  },
-  {
-    label: 'Total a pagar',
-    value: 260800
-  }
-]
+interface ApiResponse {
+  label: string
+  value: string
+}
 
 const Unpaid = ({
   className = ''
 }: PropsWithClassName) => {
-  const items = PRICE_SUMMARY.slice(0, PRICE_SUMMARY.length - 2)
-  const totals = PRICE_SUMMARY.slice(PRICE_SUMMARY.length - 2, PRICE_SUMMARY.length)
+  const [data, setData] = useState<ApiResponse[]>([])
+  const user = useUserStore(state => state.user)
+  const totals = data.slice(data.length - 2, data.length)
+  const items = data.slice(0, data.length - 2)
 
-  /*
-    TODO: Implementar lógica para obtener los datos de la matrícula
-  */
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/matriculaPagos/${user?.id}`)
+      .then(response => response.json())
+      .then(setData)
+  }, [user])
 
   return (
     <UnpaidContainer className={`${className}`}>
