@@ -21,6 +21,8 @@ const storeApi: StateCreator<SubjectState> = (set, get) => ({
   setLoading: (loading) => set({ loading }),
   setSubjects: (subjects) => set({ subjects }),
   fetchSubjects: async () => {
+    if (get().subjects.length !== 0) return
+
     set({ loading: true })
     const res = await new Promise<Subject[]>((resolve) => {
       setTimeout(() => {
