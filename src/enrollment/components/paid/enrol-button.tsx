@@ -18,7 +18,6 @@ const EnrolButton = ({
   const deleteAvailableSubject = useAvailableSubjectsStore(state => state.deleteAvailableSubject)
   const addSubject = useSubjectsStore(state => state.addSubject)
   const [loading, setLoading] = useState(false)
-  console.log(subject.id, subject.groups)
 
   const onClick = async () => {
     setLoading(true)

@@ -4,7 +4,7 @@ import { Subject } from "@/enrollment/interfaces/api-response"
 import { ColumnDef } from "@tanstack/react-table"
 import { EnrolButton, GroupSelector, SubjectName } from "@/enrollment/components"
 
-export const columns: ColumnDef<Subject>[] = [
+export const columnsAvailableSubjects: ColumnDef<Subject>[] = [
   {
     accessorKey: "name",
     header: "Materia",
