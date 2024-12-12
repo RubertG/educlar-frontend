@@ -5,6 +5,7 @@ export interface Group {
 
 // Definición de las interfaces de la respuesta de la API
 export interface Schedule {
+  id: number
   name: string
   hourStart: Date
   hourEnd: Date

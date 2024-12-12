@@ -5,6 +5,7 @@ import { APIResponse } from "@/subjects/interfaces/api-response"
 const API_RESPONSE: APIResponse = {
   monday: [
     {
+      id: 1,
       name: 'Materia 1',
       hourStart: new Date(2024, 0, 1, 8, 0),
       hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -15,6 +16,7 @@ const API_RESPONSE: APIResponse = {
       room: 'Room 101'
     },
     {
+      id: 2,
       name: 'Materia 2',
       hourStart: new Date(2024, 0, 1, 10, 0),
       hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -27,6 +29,7 @@ const API_RESPONSE: APIResponse = {
     }
   ],
   tuesday: [{
+    id: 3,
     name: 'Materia 3',
     hourStart: new Date(2024, 0, 1, 8, 0),
     hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -37,6 +40,7 @@ const API_RESPONSE: APIResponse = {
     teacher: 'Profesor 3',
     room: 'Room 103'
   }, {
+    id: 4,
     name: 'Materia 4',
     hourStart: new Date(2024, 0, 1, 10, 0),
     hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -48,6 +52,7 @@ const API_RESPONSE: APIResponse = {
     room: 'FJ 104'
   }],
   wednesday: [{
+    id: 5,
     name: 'Materia 5',
     hourStart: new Date(2024, 0, 1, 8, 0),
     hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -58,6 +63,7 @@ const API_RESPONSE: APIResponse = {
     teacher: 'Profesor 5',
     room: 'Room 105'
   }, {
+    id: 6,
     name: 'Materia 6',
     hourStart: new Date(2024, 0, 1, 10, 0),
     hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -69,6 +75,7 @@ const API_RESPONSE: APIResponse = {
     room: 'Room 106'
   }],
   thursday: [{
+    id: 7,
     name: 'Materia 7',
     hourStart: new Date(2024, 0, 1, 8, 0),
     hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -79,6 +86,7 @@ const API_RESPONSE: APIResponse = {
     teacher: 'Profesor 7',
     room: 'Room 107'
   }, {
+    id: 8,
     name: 'Materia 8',
     hourStart: new Date(2024, 0, 1, 10, 0),
     hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -90,6 +98,7 @@ const API_RESPONSE: APIResponse = {
     room: 'Room 108'
   }],
   friday: [{
+    id: 9,
     name: 'Materia 9',
     hourStart: new Date(2024, 0, 1, 8, 0),
     hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -100,6 +109,7 @@ const API_RESPONSE: APIResponse = {
     },
     room: 'Room 109'
   }, {
+    id: 10,
     name: 'Materia 10',
     hourStart: new Date(2024, 0, 1, 10, 0),
     hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -111,6 +121,7 @@ const API_RESPONSE: APIResponse = {
     room: 'Room 110'
   }],
   saturday: [{
+    id: 11,
     name: 'Materia 11',
     hourStart: new Date(2024, 0, 1, 8, 0),
     hourEnd: new Date(2024, 0, 1, 9, 59),
@@ -121,6 +132,7 @@ const API_RESPONSE: APIResponse = {
     },
     room: 'Room 111'
   }, {
+    id: 12,
     name: 'Materia 12',
     hourStart: new Date(2024, 0, 1, 10, 0),
     hourEnd: new Date(2024, 0, 1, 11, 59),
@@ -131,6 +143,7 @@ const API_RESPONSE: APIResponse = {
     teacher: 'Profesor 12',
     room: 'Room 112'
   }, {
+    id: 13,
     name: 'Materia 11',
     hourStart: new Date(2024, 0, 1, 17, 0),
     hourEnd: new Date(2024, 0, 1, 19, 59),
