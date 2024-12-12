@@ -1,5 +1,5 @@
 import { User } from "@/core/interfaces/user"
-import { getCookie } from "cookies-next/client"
+import { getCookie } from "cookies-next"
 import { TOKEN_PATH, USER_PATH } from "../../consts/cookies"
 import { verifyCredentialsAPIResponse } from "@/auth/interfaces/api-response"
 
@@ -10,9 +10,9 @@ interface LoginResponse {
 
 export const verifyCredentials = async (): Promise<LoginResponse> => {
   try {
-    const user = getCookie(USER_PATH)
-    const token = getCookie(TOKEN_PATH)
-    
+    const user = await getCookie(USER_PATH)
+    const token = await getCookie(TOKEN_PATH)
+
     if (!user || !token) {
       return {
         token: null,
