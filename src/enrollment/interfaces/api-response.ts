@@ -63,7 +63,7 @@ export const subjects: Subject[] = [
     isObligatory: true,
     groups: [
       {
-        id: "2",
+        id: "1000",
         name: "A",
         days: [
           {
