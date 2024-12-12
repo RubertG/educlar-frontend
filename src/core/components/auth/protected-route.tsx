@@ -18,24 +18,20 @@ const ProtectedRoute = ({
   const router = useRouter()
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const loadUserCredentials = async () => {
       setLoading(true)
       const { token, user } = await verifyCredentials()
       setUser(user)
       setToken(token)
       setLoading(false)
+
+      if (!user || !token) {
+        router.push("/ingresar")
+      } 
     }
 
-    fetchUser()
-  }, [setUser, setToken, setLoading])
-
-  useEffect(() => {
-    if (loading) return 
-
-    if (!user || !token) {
-      router.push("/ingresar")
-    } 
-  }, [loading, router, token, user])
+    loadUserCredentials()
+  }, [setUser, setToken, setLoading, router])
 
   if (loading) {
     return (
