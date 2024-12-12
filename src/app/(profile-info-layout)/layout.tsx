@@ -7,7 +7,8 @@ function ProfileInfoLayout({
 }: PropsWithChildren) {
   return (
     <ProtectedRoute>
-      <ProfileInfo className="mt-7"/>
+      {/* @ts-ignore */}
+      <ProfileInfo className="mt-7" />
       <Hr className="mt-10 mb-6" />
       {children}
     </ProtectedRoute>
