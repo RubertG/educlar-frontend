@@ -16,3 +16,6 @@ export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 export { Hr } from './ui/hr'
 export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from './ui/dialog'
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
+export { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
+export { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
+export { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue } from './ui/select'
