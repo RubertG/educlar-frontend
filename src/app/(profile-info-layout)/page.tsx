@@ -1,98 +1,26 @@
+import { USER_PATH } from "@/auth/consts/cookies"
+import { User } from "@/core/interfaces/user"
 import { CareerMapContainer, CareerMapRow, CareerMapRowHeader, InfoColorItem, InfoColorsContainer, Subject, SubjectContainer } from "@/profile/components"
 import { CAREER_MAP_COLORS } from "@/profile/consts/career-map-colors"
 import { CareerMap } from "@/profile/interfaces/career-map"
+import { cookies } from "next/headers"
 
-const careerMap: CareerMap = {
-  1: [
-    {
-      id: '1',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }, {
-      id: '1324',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }, {
-      id: '1234234',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }, {
-      id: '12342342',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }, {
-      id: '1234234234',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }, {
-      id: '1234234234',
-      name: 'Habilidades comunicativas 1',
-      status: 'aprobada',
-      semester: 1
-    }
-  ],
-  2: [{
-    id: '2',
-    name: 'Habilidades comunicativas 2',
-    status: 'aprobada',
-    semester: 2
-  }],
-  3: [{
-    id: '3',
-    name: 'Habilidades comunicativas 3',
-    status: 'aprobada',
-    semester: 3
-  }],
-  4: [{
-    id: '4',
-    name: 'Habilidades comunicativas 4',
-    status: 'cursando',
-    semester: 4
-  }],
-  5: [{
-    id: '5',
-    name: 'Habilidades comunicativas 5',
-    status: 'cursando',
-    semester: 5
-  }],
-  6: [{
-    id: '6',
-    name: 'Habilidades comunicativas 6',
-    status: 'aprobada',
-    semester: 6
-  }],
-  7: [{
-    id: '7',
-    name: 'Habilidades comunicativas 7',
-    status: 'pendiente',
-    semester: 7
-  }],
-  8: [{
-    id: '8',
-    name: 'Habilidades comunicativas 8',
-    status: 'cursando',
-    semester: 8
-  }],
-  9: [{
-    id: '9',
-    name: 'Habilidades comunicativas 9',
-    status: 'aprobada',
-    semester: 9
-  }],
-  10: [{
-    id: '10',
-    name: 'Habilidades comunicativas 10',
-    status: 'pendiente',
-    semester: 10
-  }]
+const getData = async () => {
+  const user = JSON.parse(cookies().get(USER_PATH)?.value || "") as User
+
+  if (!user) return null
+
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/semaforo/${user.id}`)
+  const data = await response.json()
+
+  return data as CareerMap
 }
 
-const ProfilePage = () => {
+const ProfilePage = async () => {
+  const careerMap = await getData()
+
+  if (!careerMap) return null
+
   const careerMapColors = Object.values(CAREER_MAP_COLORS)
 
   return (
