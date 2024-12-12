@@ -12,6 +12,8 @@ interface SubjectState {
   selectGroup: (subjectId: string, groupId: string) => void
   selectedGroup: (subjectId: string) => string
   addSubject: (subject: Subject) => void
+  findSubject: (subjectId: string) => Subject | undefined
+  deleteSubject: (subjectId: string) => void
 }
 
 const storeApi: StateCreator<SubjectState> = (set, get) => ({
@@ -23,15 +25,14 @@ const storeApi: StateCreator<SubjectState> = (set, get) => ({
   fetchSubjects: async () => {
     if (get().subjects.length !== 0) return
 
-    set({ loading: true })
+    get().setLoading(true)
     const res = await new Promise<Subject[]>((resolve) => {
       setTimeout(() => {
         resolve([])
       }, 1000)
     })
-    set({ subjects: res, loading: false })
-
-    return res
+    get().setLoading(false)
+    get().setSubjects(res)
   },
   selectGroup: (subjectId, groupId) => {
     const newSubjects = get().subjects
@@ -45,7 +46,7 @@ const storeApi: StateCreator<SubjectState> = (set, get) => ({
       }
     }
 
-    set({ subjects: newSubjects })
+    get().setSubjects(newSubjects)
   },
   selectedGroup: (subjectId) => {
     const subjects = get().subjects
@@ -54,11 +55,17 @@ const storeApi: StateCreator<SubjectState> = (set, get) => ({
 
     return group?.id || ""
   },
-  addSubject: (subject) => {
-    const newSubjects = get().subjects
-    newSubjects.push(subject)
-    set({ subjects: newSubjects })
-  }
+  addSubject: (subject) => set(state => ({
+    subjects: [...state.subjects, subject]
+  })),
+  findSubject: (subjectId) => {
+    const subjects = get().subjects
+    return subjects.find(subject => subject.id === subjectId)
+  },
+  deleteSubject: (subjectId) => set(state => ({
+    subjects: state.subjects.filter(subject => subject.id !== subjectId)
+  })
+  )
 })
 
 export const useSubjectsStore = create<SubjectState>()(
