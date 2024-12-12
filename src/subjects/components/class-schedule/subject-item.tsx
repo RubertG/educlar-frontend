@@ -1,3 +1,4 @@
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/core/components"
 import { Schedule } from "@/subjects/interfaces/api-response"
 
 // Interfaz de las propiedades del componente
@@ -10,12 +11,12 @@ interface Props {
 const SubjectItem = ({
   subject, classname
 }: Props) => {
-  const hourStart = subject.hourStart.toLocaleTimeString('es-CO', {
+  const hourStart = new Date(subject.hourStart).toLocaleTimeString('es-CO', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: false
   })
-  const hourEnd = subject.hourEnd.toLocaleTimeString('es-CO', {
+  const hourEnd = new Date(subject.hourEnd).toLocaleTimeString('es-CO', {
     hour: 'numeric',
     minute: '2-digit',
     hour12: false
@@ -24,9 +25,19 @@ const SubjectItem = ({
   return (
     <li className={`px-3 py-2 flex justify-between items-center gap-1 ${classname}`}>
       <div className="overflow-hidden">
-        <h4 className="font-bold truncate">
-          {subject.name}
-        </h4>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <h4 className="font-bold truncate">
+                {subject.name}
+              </h4>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{subject.name}</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
         <p className="text-sm text-text-200">
           {subject?.teacher || 'Sin profesor asignado'}
         </p>

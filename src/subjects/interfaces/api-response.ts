@@ -7,8 +7,8 @@ export interface Group {
 export interface Schedule {
   id: number
   name: string
-  hourStart: Date
-  hourEnd: Date
+  hourStart: string
+  hourEnd: string
   teacher?: string
   group: Group
   room: string
