@@ -38,18 +38,17 @@ const LoginForm = () => {
 
     const { user, token, error } = await loginClient(values.email, values.password)
 
-    if (user && token) {
+    if (user && token && !error) {
       setUser(user)
       setToken(token)
-    }
-
-    setLoading(false)
-
-    if (!error || !user || !token) {
       router.push("/")
-    } else {
+    } 
+    
+    if (error) {
       setError(error)
     }
+    
+    setLoading(false)
   }
 
   return (
