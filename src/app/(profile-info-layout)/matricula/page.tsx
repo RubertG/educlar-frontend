@@ -1,10 +1,29 @@
-import { Paid, Unpaid } from "@/enrollment/components"
+import { ChangeGroupDialog, DeleteSubjectDialog, Paid } from "@/enrollment/components"
 
-function EnrollementPage() {
+interface Props {
+  searchParams: { [key: string]: string | undefined }
+}
+
+function EnrollementPage({
+  searchParams: { cambiar: changeId, eliminar: removeId }
+}: Props) {
   return (
     <section className="mb-5">
-      <Unpaid />
+      {/* <Unpaid /> */}
+
       <Paid />
+
+      {
+        changeId && (
+          <ChangeGroupDialog subjectId={changeId} />
+        )
+      }
+
+      {
+        removeId && (
+          <DeleteSubjectDialog subjectId={removeId} />
+        )
+      }
     </section>
   )
 }
