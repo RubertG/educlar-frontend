@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 import { inter } from "@/core/fonts"
 import { Nav } from "@/core/components"
+import { Toaster } from "sonner"
 
 export const metadata: Metadata = {
   title: "EduCLAR - Gestor académico",
@@ -27,6 +28,11 @@ export default function RootLayout({
             {children}
           </main>
         </div>
+        <Toaster toastOptions={{
+          classNames: {
+            error: "bg-red-600 border bg-red-700 text-white flex items-center rounded-lg shadow-md"
+          }
+        }} />
       </body>
     </html>
   )
