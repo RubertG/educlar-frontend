@@ -1,6 +1,7 @@
 import { User } from "@/core/interfaces/user"
 import { getCookie } from "cookies-next/client"
 import { TOKEN_PATH, USER_PATH } from "../../consts/cookies"
+import { verifyCredentialsAPIResponse } from "@/auth/interfaces/api-response"
 
 interface LoginResponse {
   user: User | null
@@ -11,10 +12,7 @@ export const verifyCredentials = async (): Promise<LoginResponse> => {
   try {
     const user = getCookie(USER_PATH)
     const token = getCookie(TOKEN_PATH)
-
-    // console.log(user, token)
-    // TODO: Verificar si el token es válido con el backend
-
+    
     if (!user || !token) {
       return {
         token: null,
@@ -22,9 +20,19 @@ export const verifyCredentials = async (): Promise<LoginResponse> => {
       }
     }
 
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/verificarToken`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    const data = await res.json() as verifyCredentialsAPIResponse
+
     return {
-      user: JSON.parse(user),
-      token: JSON.parse(token)
+      user: data.User,
+      token: token
     }
   } catch (error) {
     console.log(error)
