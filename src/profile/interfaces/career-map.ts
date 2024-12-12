@@ -3,14 +3,13 @@ import { SUBJECT_STATUS } from "../consts/subject-status"
 export type SubjectStatus = typeof SUBJECT_STATUS[keyof typeof SUBJECT_STATUS]
 
 export interface Subject {
-  id: string
+  id: number
   name: string
   status: SubjectStatus
-  semester: number
 }
 
 export interface CareerMap {
-  [key: number]: Subject[]
+  [key: string]: Subject[]
 }
 
 export interface CareerMapColors {

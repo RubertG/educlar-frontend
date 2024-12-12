@@ -1,7 +1,7 @@
 // Props para StatsItem que contiene un label y un valor
 interface Props {
   label: string
-  value: string
+  value: string | number
 }
 
 // Componente que muestra un item de estadísticas
