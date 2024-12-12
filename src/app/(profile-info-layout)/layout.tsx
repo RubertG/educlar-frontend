@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Hr, ProtectedRoute } from "@/core/components"
 import { ProfileInfo } from "@/profile/components"
 import { PropsWithChildren } from "react"
@@ -7,7 +8,7 @@ function ProfileInfoLayout({
 }: PropsWithChildren) {
   return (
     <ProtectedRoute>
-      {/* @ts-ignore */}
+      {/* @ts-expect-error */}
       <ProfileInfo className="mt-7" />
       <Hr className="mt-10 mb-6" />
       {children}
