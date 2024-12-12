@@ -1,4 +1,4 @@
-export interface Day { 
+export interface Day {
   id: string
   date: string
   hourStart: Date
@@ -9,11 +9,12 @@ export interface Group {
   id: string
   name: string
   days: Day[]
+  isSelected?: boolean
 }
 
 export interface Subject {
   id: string
-  name: string 
+  name: string
   semester: number
   credits: number
   isObligatory: boolean
@@ -39,9 +40,21 @@ export const subjects: Subject[] = [
             hourEnd: new Date(2024, 0, 1, 9, 59)
           }
         ]
+      },
+      {
+        id: "2",
+        name: "B",
+        days: [
+          {
+            id: "100",
+            date: "Martes",
+            hourStart: new Date(2024, 0, 1, 8, 30),
+            hourEnd: new Date(2024, 0, 1, 9, 59)
+          }
+        ]
       }
     ]
-  }, 
+  },
   {
     id: "2",
     name: "Physics",
