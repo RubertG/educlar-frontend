@@ -6,6 +6,7 @@ import { Button, NavBrand, NavListContainer, NavListItem, ToggleMenu } from "@/c
 import { useRouter } from "next/navigation"
 import { logoutClient } from "@/auth/services"
 import { useUserStore } from "@/core/stores"
+import { customRevalidatePath } from "@/enrollment/utils"
 
 // Lista de items de la navegación
 const NAV_ITEMS: NavigationItem[] = [
@@ -43,11 +44,17 @@ export function Nav() {
     setOpen(!open)
   }
 
-  const logOut = () => {
+  const logOut = async () => {
     handleOpen()
-    logoutClient()
+    await logoutClient()
     setUser(null)
     setToken(null)
+
+    customRevalidatePath("/")
+    customRevalidatePath("/ingresar")
+    customRevalidatePath("/matricula")
+    customRevalidatePath("/materias")
+
     router.push("/ingresar")
   }
 

@@ -1,10 +1,10 @@
 import { TOKEN_PATH, USER_PATH } from "@/auth/consts/cookies"
-import { setCookie } from "cookies-next/client"
+import { setCookie } from "cookies-next"
 
-export const logoutClient = () => {
+export const logoutClient = async () => {
   try {
-    setCookie(USER_PATH, null)
-    setCookie(TOKEN_PATH, null)
+    await setCookie(USER_PATH, null)
+    await setCookie(TOKEN_PATH, null)
   } catch (error) {
     console.log(error)
   }
