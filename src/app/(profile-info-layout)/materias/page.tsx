@@ -5,13 +5,17 @@ import { DAYS } from "@/subjects/consts"
 import { APIResponse } from "@/subjects/interfaces/api-response"
 import { cookies } from "next/headers"
 
+export const dynamic = "force-dynamic"
+
 const getData = async (): Promise<APIResponse> => {
   try {
     const user = JSON.parse(cookies().get(USER_PATH)?.value as string) as User
+    console.log(user)
 
     if (!user) return { response: 'Error al cargar las materias', friday: [], monday: [], saturday: [], thursday: [], tuesday: [], wednesday: [] }
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/horario/${user.id}`)
+
     return response.json()
   } catch (error) {
     console.error(error)
@@ -25,9 +29,10 @@ const getData = async (): Promise<APIResponse> => {
 */
 async function SubjectsPage() {
   const data = await getData()
+  console.log(data)
 
   if (!data || data.response) return (
-    <div className="">
+    <div>
       {data?.response || 'Error al cargar las materias'}
     </div>
   )

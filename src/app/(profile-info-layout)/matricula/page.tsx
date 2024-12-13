@@ -4,9 +4,17 @@ import { ChangeGroupDialog, DeleteSubjectDialog, Paid, TableAvailableSubjects, T
 import { parseSubjects } from "@/enrollment/utils"
 import { cookies } from "next/headers"
 
+export const dynamic = "force-dynamic"
+
 const getData = async () => {
   try {
     const user = JSON.parse(cookies().get(USER_PATH)?.value || "{}") as User
+
+    if (!user) return {
+      availableSubjects: [],
+      enrolledSubjects: [],
+      isPaid: false
+    }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/materiasValidas/${user.id}`)
     const data = await res.json()

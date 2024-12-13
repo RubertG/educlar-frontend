@@ -30,7 +30,8 @@ export default function RootLayout({
         </div>
         <Toaster toastOptions={{
           classNames: {
-            error: "bg-red-600 border bg-red-700 text-white flex items-center rounded-lg shadow-md"
+            error: "bg-red-600 border !bg-red-700 text-white flex items-center rounded-lg shadow-md",
+            success: "bg-green-600 border !bg-green-700 text-white flex items-center rounded-lg shadow-md"
           }
         }} />
       </body>

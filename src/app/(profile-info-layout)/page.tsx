@@ -5,16 +5,14 @@ import { CAREER_MAP_COLORS } from "@/profile/consts/career-map-colors"
 import { CareerMap } from "@/profile/interfaces/career-map"
 import { cookies } from "next/headers"
 
+export const dynamic = "force-dynamic"
+
 const getData = async () => {
   const user = JSON.parse(cookies().get(USER_PATH)?.value || "") as User
 
   if (!user) return null
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/semaforo/${user.id}`, {
-    next: {
-      revalidate: 0
-    }
-  })
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/semaforo/${user.id}`)
   const data = await response.json()
 
   return data as CareerMap
