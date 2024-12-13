@@ -12,6 +12,8 @@ interface AvailableSubjectsState {
   selectedGroup: (subjectId: string) => string
   deleteAvailableSubject: (subjectId: string) => void
   addAvailableSubject: (subject: Subject) => void
+
+  searchObligatorySubject: () => Subject | undefined
 }
 
 const storeApi: StateCreator<AvailableSubjectsState> = (set, get) => ({
@@ -47,7 +49,13 @@ const storeApi: StateCreator<AvailableSubjectsState> = (set, get) => ({
   },
   addAvailableSubject: (subject) => set(state => ({
     availableSubjects: [...state.availableSubjects, subject]
-  }))
+  })),
+  searchObligatorySubject: () => {
+    const subjects = get().availableSubjects
+    const mandatorySubject = subjects.find(subject => subject.isObligatory)
+
+    return mandatorySubject
+  }
 })
 
 export const useAvailableSubjectsStore = create<AvailableSubjectsState>()(
