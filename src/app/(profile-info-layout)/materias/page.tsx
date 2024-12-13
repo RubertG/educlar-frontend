@@ -10,7 +10,6 @@ export const dynamic = "force-dynamic"
 const getData = async (): Promise<APIResponse> => {
   try {
     const user = JSON.parse(cookies().get(USER_PATH)?.value as string) as User
-    console.log(user)
 
     if (!user) return { response: 'Error al cargar las materias', friday: [], monday: [], saturday: [], thursday: [], tuesday: [], wednesday: [] }
 
@@ -29,7 +28,6 @@ const getData = async (): Promise<APIResponse> => {
 */
 async function SubjectsPage() {
   const data = await getData()
-  console.log(data)
 
   if (!data || data.response) return (
     <div>
@@ -57,7 +55,7 @@ async function SubjectsPage() {
                     )
                   })
                 ) : (
-                  <li className="p-3 text-center text-text-200">
+                  <li className="p-3 text-center text-text-200 text-sm">
                     No hay clases programadas
                   </li>
                 )
