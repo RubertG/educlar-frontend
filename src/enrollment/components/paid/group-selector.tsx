@@ -20,25 +20,35 @@ const GroupSelector = ({
   }
 
   return (
-    <Select
-      onValueChange={onClick}
-    >
-      <SelectTrigger className={`${className}`}>
-        <SelectValue placeholder="Grupo" />
-      </SelectTrigger>
-      <SelectContent>
-        {
-          groups.map((group) => (
-            <SelectItem
-              key={group.id}
-              value={group.id}
-            >
-              {group.name}
-            </SelectItem>
-          ))
-        }
-      </SelectContent>
-    </Select>
+    <>
+      {
+        groups.length > 0 ? (
+          <Select
+            onValueChange={onClick}
+          >
+            <SelectTrigger className={`${className}`}>
+              <SelectValue placeholder="Grupo" />
+            </SelectTrigger>
+            <SelectContent>
+              {
+                groups.map((group) => (
+                  <SelectItem
+                    key={group.id}
+                    value={group.id}
+                  >
+                    {group.name}
+                  </SelectItem>
+                ))
+              }
+            </SelectContent>
+          </Select>
+        ) : (
+          <p>
+            Sin grupos
+          </p>
+        )
+      }
+    </>
   )
 }
 
