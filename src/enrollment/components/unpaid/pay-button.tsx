@@ -2,12 +2,15 @@
 
 import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/core/components"
 import { PropsWithClassName } from "@/core/interfaces/props"
+import { useUserStore } from "@/core/stores"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 
 function PayButton({
   className = ''
 }: PropsWithClassName) {
+  const user = useUserStore(state => state.user)
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const router = useRouter()
@@ -17,12 +20,31 @@ function PayButton({
   }
 
   const onClick = async () => {
-    setLoading(true)
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setLoading(false)
-    setOpen(false)
-    router.refresh()
+    try {
+      setLoading(true)
+
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/pagarMatricula/${user?.id}`,{
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      const data = await res.json()
+
+      if (res.ok) {
+        toast.success(data.response)
+      } else {
+        toast.error(data.response)
+      }
+    } catch (error) {
+      console.log(error)
+
+      toast.error("Ocurrió un error al procesar el pago.")
+    } finally {
+      setLoading(false)
+      setOpen(false)
+      router.refresh()
+    }
   }
 
   return (
