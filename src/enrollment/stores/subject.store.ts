@@ -8,7 +8,6 @@ interface SubjectState {
 
   setSubjects: (subjects: Subject[]) => void
   setLoading: (loading: boolean) => void
-  fetchSubjects: () => void
   selectGroup: (subjectId: string, groupId: string) => void
   selectedGroup: (subjectId: string) => string
   addSubject: (subject: Subject) => void
@@ -18,22 +17,10 @@ interface SubjectState {
 
 const storeApi: StateCreator<SubjectState> = (set, get) => ({
   subjects: [],
-  loading: true,
+  loading: false,
 
   setLoading: (loading) => set({ loading }),
   setSubjects: (subjects) => set({ subjects }),
-  fetchSubjects: async () => {
-    if (get().subjects.length !== 0) return
-
-    get().setLoading(true)
-    const res = await new Promise<Subject[]>((resolve) => {
-      setTimeout(() => {
-        resolve([])
-      }, 1000)
-    })
-    get().setLoading(false)
-    get().setSubjects(res)
-  },
   selectGroup: (subjectId, groupId) => {
     const newSubjects = get().subjects
     const subjectIndex = newSubjects.findIndex(subject => subject.id === subjectId)

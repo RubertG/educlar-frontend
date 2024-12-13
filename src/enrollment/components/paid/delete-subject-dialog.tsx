@@ -36,7 +36,10 @@ const DeleteSubjectDialog = ({
 
     await new Promise((resolve) => setTimeout(resolve, 1000))
     deleteSubject(subjectId)
-    addAvailableSubject(subject)
+    addAvailableSubject({
+      ...subject,
+      isEnrolled: false
+    })
 
     setLoading(false)
     setOpen(false)

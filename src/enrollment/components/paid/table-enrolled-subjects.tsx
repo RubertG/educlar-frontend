@@ -13,18 +13,13 @@ interface Props {
 const TableEnrolledSubjects = ({
   className, data: subjects
 }: Props) => {
-  const fetchSubjects = useSubjectsStore(state => state.fetchSubjects)
   const data = useSubjectsStore(state => state.subjects)
   const loading = useSubjectsStore(state => state.loading)
   const setSubjects = useSubjectsStore(state => state.setSubjects)
 
   useEffect(() => {
-    if (!subjects || subjects.length === 0) {
-      fetchSubjects()
-    } else {
-      setSubjects(subjects)
-    }
-  }, [fetchSubjects, subjects, setSubjects])
+    setSubjects([...subjects || []])
+  }, [])
 
   return (
     <div className={`border border-bg-300 bg-bg-50 rounded-lg p-4 shadow-custom-card ${className}`}>

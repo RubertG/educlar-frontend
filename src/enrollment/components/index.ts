@@ -4,7 +4,7 @@ export { Unpaid } from './unpaid/unpaid'
 export { SummaryItem } from './unpaid/summary-item'
 export { PayButton } from './unpaid/pay-button'
 
-export { Paid } from './paid/paid'
+export { Paid } from './paid/paid-container'
 export { columnsAvailableSubjects } from './paid/columns-available-subjects'
 export { TableSubjects } from './paid/table-subjects'
 export { EnrolButton } from './paid/enrol-button'

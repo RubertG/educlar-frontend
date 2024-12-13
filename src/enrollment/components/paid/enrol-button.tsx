@@ -37,7 +37,10 @@ const EnrolButton = ({
     })
 
     deleteAvailableSubject(subject.id)
-    addSubject(subject)
+    addSubject({
+      ...subject,
+      isEnrolled: true
+    })
     setLoading(false)
   }
 

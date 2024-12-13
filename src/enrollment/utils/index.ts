@@ -1,0 +1,1 @@
+export { parseSubjects } from './parse-subjects'

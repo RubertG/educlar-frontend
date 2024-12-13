@@ -1,5 +1,4 @@
 export interface Day {
-  id: string
   date: string
   hourStart: Date
   hourEnd: Date
@@ -36,7 +35,6 @@ export const subjects: Subject[] = [
         name: "A",
         days: [
           {
-            id: "1",
             date: "Lunes",
             hourStart: new Date(2024, 0, 1, 8, 30),
             hourEnd: new Date(2024, 0, 1, 9, 59)
@@ -49,7 +47,6 @@ export const subjects: Subject[] = [
         name: "B",
         days: [
           {
-            id: "100",
             date: "Martes",
             hourStart: new Date(2024, 0, 1, 8, 30),
             hourEnd: new Date(2024, 0, 1, 9, 59)
@@ -70,7 +67,6 @@ export const subjects: Subject[] = [
         name: "A",
         days: [
           {
-            id: "2",
             date: "Lunes",
             hourStart: new Date(2024, 0, 1, 10, 0),
             hourEnd: new Date(2024, 0, 1, 11, 59)
@@ -91,7 +87,6 @@ export const subjects: Subject[] = [
         name: "A",
         days: [
           {
-            id: "3",
             date: "Lunes",
             hourStart: new Date(2024, 0, 1, 13, 0),
             hourEnd: new Date(2024, 0, 1, 16, 59)

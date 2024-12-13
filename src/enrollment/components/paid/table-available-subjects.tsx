@@ -13,20 +13,13 @@ interface Props {
 const TableAvailableSubjects = ({
   data: subjects, className
 }: Props) => {
-  const fetchAvailableSubjects = useAvailableSubjectsStore(state => state.fetchAvailableSubjects)
   const data = useAvailableSubjectsStore(state => state.availableSubjects)
   const loading = useAvailableSubjectsStore(state => state.loading)
   const setAvailableSubjects = useAvailableSubjectsStore(state => state.setAvailableSubjects)
 
   useEffect(() => {
-    if (!subjects || subjects.length === 0) {
-      fetchAvailableSubjects()
-    } else {
-      setAvailableSubjects(subjects)
-    }
-
-    fetchAvailableSubjects()
-  }, [fetchAvailableSubjects, subjects, setAvailableSubjects])
+    setAvailableSubjects([...subjects || []])
+  }, [])
 
   return (
     <div className={`border border-bg-300 bg-bg-50 rounded-lg p-4 shadow-custom-card ${className}`}>

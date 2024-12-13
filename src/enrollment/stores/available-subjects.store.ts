@@ -1,4 +1,4 @@
-import { Subject, subjects } from "@/enrollment/interfaces/api-response"
+import { Subject } from "@/enrollment/interfaces/api-response"
 import { create, StateCreator } from "zustand"
 import { devtools } from "zustand/middleware"
 
@@ -8,7 +8,6 @@ interface AvailableSubjectsState {
 
   setAvailableSubjects: (subjects: Subject[]) => void
   setLoading: (loading: boolean) => void
-  fetchAvailableSubjects: () => void
   selectGroup: (subjectId: string, groupId: string) => void
   selectedGroup: (subjectId: string) => string
   deleteAvailableSubject: (subjectId: string) => void
@@ -17,22 +16,10 @@ interface AvailableSubjectsState {
 
 const storeApi: StateCreator<AvailableSubjectsState> = (set, get) => ({
   availableSubjects: [],
-  loading: true,
+  loading: false,
 
   setLoading: (loading) => set({ loading }),
   setAvailableSubjects: (subjects) => set({ availableSubjects: subjects }),
-  fetchAvailableSubjects: async () => {
-    if (get().availableSubjects.length !== 0) return
-
-    get().setLoading(true)
-    const res = await new Promise<Subject[]>((resolve) => {
-      setTimeout(() => {
-        resolve(subjects)
-      }, 1000)
-    })
-    get().setLoading(false)
-    get().setAvailableSubjects(res)
-  },
   selectGroup: (subjectId, groupId) => {
     const newSubjects = get().availableSubjects
     const subjectIndex = newSubjects.findIndex(subject => subject.id === subjectId)

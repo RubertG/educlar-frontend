@@ -10,7 +10,11 @@ const getData = async () => {
 
   if (!user) return null
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/semaforo/${user.id}`)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/semaforo/${user.id}`, {
+    next: {
+      revalidate: 0
+    }
+  })
   const data = await response.json()
 
   return data as CareerMap
