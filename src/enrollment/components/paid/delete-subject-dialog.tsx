@@ -5,6 +5,9 @@ import { useAvailableSubjectsStore, useSubjectsStore } from "@/enrollment/stores
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
+import { deleteSubjectService } from "../services"
+import { useUserStore } from "@/core/stores"
+import { customRevalidatePath } from "@/enrollment/utils"
 
 interface Props {
   subjectId: string
@@ -13,9 +16,12 @@ interface Props {
 const DeleteSubjectDialog = ({
   subjectId
 }: Props) => {
+  const user = useUserStore(state => state.user)
+
   const subject = useSubjectsStore(state => state.findSubject(subjectId))
   const deleteSubject = useSubjectsStore(state => state.deleteSubject)
   const addAvailableSubject = useAvailableSubjectsStore(state => state.addAvailableSubject)
+  const selectedGroup = useSubjectsStore(state => state.selectedGroup)
 
   const [open, setOpen] = useState(true)
   const [loading, setLoading] = useState(false)
@@ -44,14 +50,28 @@ const DeleteSubjectDialog = ({
       return
     }
 
+    const groupId = selectedGroup(subject.id)
+    const { error, response } = await deleteSubjectService(user?.id || "", groupId)
+
+    if (error) {
+      toast.error(response)
+      setLoading(false)
+
+      return
+    }
+
     deleteSubject(subjectId)
     addAvailableSubject({
       ...subject,
       isEnrolled: false
     })
-
+    toast.success("Grupo eliminado con éxito")
     setLoading(false)
     setOpen(false)
+
+    customRevalidatePath("/materias")
+    customRevalidatePath("/")
+
     router.push("/matricula")
   }
 
