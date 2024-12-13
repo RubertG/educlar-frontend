@@ -4,6 +4,7 @@ import { Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogH
 import { useAvailableSubjectsStore, useSubjectsStore } from "@/enrollment/stores"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { toast } from "sonner"
 
 interface Props {
   subjectId: string
@@ -33,8 +34,16 @@ const DeleteSubjectDialog = ({
     }
 
     setLoading(true)
-
     await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    if (subject.isObligatory) {
+      toast.error("No puedes eliminar una materia que es obligatorias.")
+      setLoading(false)
+      handleClose()
+
+      return
+    }
+
     deleteSubject(subjectId)
     addAvailableSubject({
       ...subject,

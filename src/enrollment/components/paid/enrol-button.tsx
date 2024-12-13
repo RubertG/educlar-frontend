@@ -3,6 +3,7 @@
 import { Button } from "@/core/components"
 import { Subject } from "@/enrollment/interfaces/api-response"
 import { useAvailableSubjectsStore, useSubjectsStore } from "@/enrollment/stores"
+import { customRevalidatePath } from "@/enrollment/utils"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -17,6 +18,7 @@ const EnrolButton = ({
   const selectedGroup = useAvailableSubjectsStore(state => state.selectedGroup)
   const deleteAvailableSubject = useAvailableSubjectsStore(state => state.deleteAvailableSubject)
   const addSubject = useSubjectsStore(state => state.addSubject)
+  const searchObligatorySubject = useAvailableSubjectsStore(state => state.searchObligatorySubject)
   const [loading, setLoading] = useState(false)
 
   const onClick = async () => {
@@ -36,11 +38,24 @@ const EnrolButton = ({
       }, 1000)
     })
 
+    const obligatorySubject = searchObligatorySubject()
+
+    if (obligatorySubject && !subject.isObligatory) {
+      toast.error(`Debes matricular primero las materias que son obligatorias. Matricula ${obligatorySubject.name}, por favor.`)
+      setLoading(false)
+
+      return
+    }
+
     deleteAvailableSubject(subject.id)
     addSubject({
       ...subject,
       isEnrolled: true
     })
+
+    customRevalidatePath("/")
+    customRevalidatePath("/materias")
+
     setLoading(false)
   }
 
