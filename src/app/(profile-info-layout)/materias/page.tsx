@@ -5,13 +5,19 @@ import { DAYS } from "@/subjects/consts"
 import { APIResponse } from "@/subjects/interfaces/api-response"
 import { cookies } from "next/headers"
 
-const getData = async () => {
-  const user = JSON.parse(cookies().get(USER_PATH)?.value as string) as User
+const getData = async (): Promise<APIResponse> => {
+  try {
+    const user = JSON.parse(cookies().get(USER_PATH)?.value as string) as User
 
-  if (!user) return null 
+    if (!user) return { response: 'Error al cargar las materias', friday: [], monday: [], saturday: [], thursday: [], tuesday: [], wednesday: [] }
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/horario/${user.id}`)
-  return response.json() as Promise<APIResponse>
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/estudiantes/horario/${user.id}`)
+    return response.json()
+  } catch (error) {
+    console.error(error)
+
+    return { response: 'Error al cargar las materias', friday: [], monday: [], saturday: [], thursday: [], tuesday: [], wednesday: [] }
+  }
 }
 
 /*
@@ -20,9 +26,13 @@ const getData = async () => {
 async function SubjectsPage() {
   const data = await getData()
 
-  if (!data) return null
+  if (!data || data.response) return (
+    <div className="">
+      {data?.response || 'Error al cargar las materias'}
+    </div>
+  )
 
-  const classes = Object.keys(data) as (keyof APIResponse)[]
+  const classes = Object.keys(data) as (keyof Omit<APIResponse, "response">)[]
 
   return (
     <ScheduleContainer className="mb-10">

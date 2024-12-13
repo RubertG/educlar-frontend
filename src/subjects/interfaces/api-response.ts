@@ -16,6 +16,7 @@ export interface Schedule {
 
 // Definición de la respuesta de la API
 export interface APIResponse {
+  response?: string
   monday: Schedule[]
   tuesday: Schedule[]
   wednesday: Schedule[]
