@@ -25,13 +25,13 @@ const ProfileInfo = async ({
 
   if (!data) return null
 
-  const { stats, user } = data
+  const { stats, user, image } = data
 
   return (
     <header className={`flex flex-col items-center xl:flex-row xl:gap-7 ${className}`}>
       <Image
         className="w-full max-w-44 aspect-[3/3.5] rounded-lg object-cover object-center"
-        src="/profile-img.jpg"
+        src={`${process.env.NEXT_PUBLIC_API_URL}/imagenes/${image}`}
         width={200}
         height={300}
         alt="Profile picture"

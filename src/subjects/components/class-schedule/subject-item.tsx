@@ -28,7 +28,7 @@ const SubjectItem = ({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <h4 className="font-bold truncate">
+              <h4 className="font-bold truncate text-sm">
                 {subject.name}
               </h4>
             </TooltipTrigger>
