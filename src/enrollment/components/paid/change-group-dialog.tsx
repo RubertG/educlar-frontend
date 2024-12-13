@@ -5,6 +5,9 @@ import { useSubjectsStore } from "@/enrollment/stores"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
+import { changeSubjectGroupService } from "../services"
+import { customRevalidatePath } from "@/enrollment/utils"
+import { useUserStore } from "@/core/stores"
 
 interface Props {
   subjectId: string
@@ -13,8 +16,11 @@ interface Props {
 const ChangeGroupDialog = ({
   subjectId
 }: Props) => {
+  const user = useUserStore(state => state.user)
+
   const subject = useSubjectsStore(state => state.findSubject(subjectId))
   const groups = subject?.groups.filter(group => !group.isSelected) || []
+  const selectedPrevGroup = useSubjectsStore(state => state.selectedGroup)
 
   const [open, setOpen] = useState(true)
   const [selectedGroup, setSelectedGroup] = useState("")
@@ -35,11 +41,23 @@ const ChangeGroupDialog = ({
     }
 
     setLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    selectGroup(subjectId, selectedGroup)
+    const prevGroup = selectedPrevGroup(subjectId)
+    const { error, response } = await changeSubjectGroupService(user?.id || "", prevGroup, selectedGroup)
 
+    if (error) {
+      toast.error(response)
+      setLoading(false)
+
+      return
+    }
+
+    selectGroup(subjectId, selectedGroup)
+    toast.success("Grupo cambiado con éxito")
     setLoading(false)
     setOpen(false)
+
+    customRevalidatePath("/materias")
+
     router.push("/matricula")
   }
 
