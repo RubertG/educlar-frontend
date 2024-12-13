@@ -17,7 +17,7 @@ const ScheduleOfDay = ({
       {
         day && (
           <header className="p-3 bg-primary-100 flex items-center justify-between">
-            <h3 className="font-semibold text-bg-50 xl:text-lg">
+            <h3 className="font-semibold text-bg-50">
               {day}
             </h3>
             <Clock className="w-4 stroke-bg-200" />
