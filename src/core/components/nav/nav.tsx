@@ -37,6 +37,7 @@ export function Nav() {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const token = useUserStore((state) => state.token)
+  const user = useUserStore((state) => state.user)
   const setToken = useUserStore((state) => state.setToken)
   const setUser = useUserStore((state) => state.setUser)
 
@@ -73,7 +74,7 @@ export function Nav() {
 
         <NavListContainer open={open}>
           {
-            token && (
+            (token && user) && (
               NAV_ITEMS.map((item) => (
                 <NavListItem
                   key={item.label}
@@ -86,7 +87,7 @@ export function Nav() {
           }
           <li className="mt-2 md:mt-0 md:ml-2">
             {
-              token ? (
+              (token && user) ? (
                 <Button
                   variant="outline"
                   onClick={logOut}
